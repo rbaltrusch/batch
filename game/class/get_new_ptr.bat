@@ -3,4 +3,4 @@
 @echo off
 call get_guid ptr
 setlocal enabledelayedexpansion
-endlocal & set %~1=*!%~1!
+endlocal & set %~1=*%ptr%

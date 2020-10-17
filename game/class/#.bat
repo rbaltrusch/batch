@@ -9,5 +9,4 @@
 setlocal enabledelayedexpansion
 	set rv=!%1!
 endlocal & set type=!%rv%.type!
-echo %type% %*
 call %type% %*

@@ -7,27 +7,38 @@ goto :main
 
 :main
 	setlocal enabledelayedexpansion
-		::instantiate object a of type Class with args 1 and 2
-		call Class a construct 1 2
-		call # a method
+		::instantiate player
+		call Entity player construct player.image
+		::call # a iterate_arg1
 		
-		::call method iterate_arg1 for object a
 		echo.
-		echo arg1 was !%a%.arg1!
-		call Class a iterate_arg1
-		echo arg1 is now !%a%.arg1!
+		call List mylist construct
 		
-		::call method increase_arg2 for object a with arg 20
-		echo.
-		echo %a% !%a%.arg2!
-		echo arg2 was !%a%.arg2!
-		call Class a increase_arg2 20
-		echo arg2 is now !%a%.arg2!
+		echo elements are !%mylist%.__elements__!
+		call # mylist append 123
+		call # mylist append 234
+		call # mylist append 33
+		echo elements are !%mylist%.__elements__!
 		
-		::call method move for object a with args 1 and 1
 		echo.
-		echo pos was !%a%.pos!
-		call Class a move 1 1
-		echo pos is now !%a%.pos!
+		call # mylist get 1
+		echo element received: %element%
+		
+		echo.
+		call # mylist get 0
+		echo element received: %element%
+		
+		echo.
+		call # mylist get 2
+		echo element received: %element%
+		
+		echo.
+		call # mylist set 2 345
+		echo elements are !%mylist%.__elements__!
+		
+		echo.
+		call # mylist pop 1
+		echo elements are !%mylist%.__elements__!
+		
 	endlocal
 goto :eof

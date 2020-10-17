@@ -6,4 +6,8 @@
 ::Note: object needs to have a type attribute
 
 @echo off
-call %%%1.type%% %*
+setlocal enabledelayedexpansion
+	set rv=!%1!
+endlocal & set type=!%rv%.type!
+echo %type% %*
+call %type% %*

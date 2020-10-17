@@ -20,35 +20,37 @@ goto :main
 :construct
 	::constructor method needs to be called to instantiate object. 
 	::Attributes reside in global varspace 
-	set %~1.type=%__class__%
-	set %~1.arg1=%~3
-	set %~1.arg2=%~4
-	set %~1.dict=arg type
-	set %~1.x=0
-	set %~1.y=0
-	set %~1.pos=0 0
-	set %~1=*123
+
+	call get_new_ptr ptr
+	set %ptr%.type=%__class__%
+	set %ptr%.arg1=%~3
+	set %ptr%.arg2=%~4
+	set %ptr%.dict=arg type
+	set %ptr%.x=0
+	set %ptr%.y=0
+	set %ptr%.pos=0 0
+	set %~1=%ptr%
 goto :eof
 
 :iterate_arg1
 	setlocal enabledelayedexpansion
-		set /a rv=!%~1.arg1! + 1
-	endlocal & set %~1.arg1=%rv%
+		set /a rv=!%self%.arg1! + 1
+	endlocal & set %self%.arg1=%rv%
 goto :eof
 
 :increase_arg2
 	setlocal enabledelayedexpansion
-		for /l %%a in (1 1 %3) do set /a %~1.arg2=!%~1.arg2! + 1
-		set rv=!%~1.arg2!
-	endlocal & set %~1.arg2=%rv%
+		set rv=!%self%.arg2!
+		for /l %%a in (1 1 %3) do set /a rv=!rv! + 1
+	endlocal & set %self%.arg2=%rv%
 goto :eof
 
 :move
 	setlocal enabledelayedexpansion
-		set /a rv_x=!%~1.x! + %3
-		set /a rv_y=!%~1.y! + %4
+		set /a rv_x=!%self%.x! + %3
+		set /a rv_y=!%self%.y! + %4
 		set rv_pos=%rv_x% %rv_y%
-	endlocal & set %~1.x=%rv_x% & set %~1.y=%rv_y% & set %~1.pos=%rv_pos%
+	endlocal & set %self%.x=%rv_x% & set %self%.y=%rv_y% & set %self%.pos=%rv_pos%
 goto :eof
 
 :method
@@ -58,5 +60,6 @@ goto :eof
 
 :main
 	echo MAIN: %*
+	call getptr %~1 self 1
 	call :%~2 %*
 exit /b

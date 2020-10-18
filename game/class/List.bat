@@ -16,6 +16,10 @@ goto :__main__
 	call :%~2 %*
 exit /b
 
+:__dict__ --> 1:objectname
+	set %self%
+exit /b
+
 :__base_constructor__ --> objectname
 	call get_new_ptr self
 	echo constructor %self%
@@ -23,11 +27,12 @@ exit /b
 	set %~1=%self%
 exit /b
 
-:construct --> 1:objectname 2:methodname
+:construct --> 1:objectname
 	::constructor method needs to be called to instantiate object. 
 	::Attributes reside in global varspace
 	call :__base_constructor__ %~1
-	set %self%.__elements__=
+	set %self%.elements=
+	set %self%.get=call # %~1 get
 	set %self%.__delim__=,
 exit /b
 
@@ -35,7 +40,9 @@ exit /b
 	setlocal enabledelayedexpansion
 		set counter=0
 		set element=NotFound
-		for %%a in ( !%self%.__elements__! ) do (
+		set delim=!%self%.__delim__!
+		set elements=!%self%.elements!
+		for %%a in ( %elements% ) do (
 			if !counter! EQU %~3 (
 				set element=%%a
 				goto :endofloop
@@ -50,7 +57,7 @@ exit /b
 	setlocal enabledelayedexpansion
 		set counter=0
 		set elements=
-		for %%a in ( !%self%.__elements__! ) do (
+		for %%a in ( !%self%.elements! ) do (
 			if !counter! EQU %~3 (
 				set elements=!elements!%~4!%self%.__delim__!
 			)else (
@@ -58,24 +65,34 @@ exit /b
 			)
 			set /a counter=!counter! + 1
 		)
-	endlocal & set %self%.__elements__=%elements%
+	endlocal & set %self%.elements=%elements%
+exit /b
+
+:get_element_set --> 1:objectname
+	setlocal
+	endlocal & set element_set=%element_set%
 exit /b
 
 :append --> 1:objectname 2:methodname 3:value
 	setlocal enabledelayedexpansion
-		set elements=!%self%.__elements__!%~3!%self%.__delim__!
-	endlocal & set %self%.__elements__=%elements%
+		set elements=!%self%.elements!%~3!%self%.__delim__!
+	endlocal & set %self%.elements=%elements%
 exit /b
 
 :pop --> 1:objectname 2:methodname 3:index
 	setlocal enabledelayedexpansion
 		set counter=0
 		set elements=
-		for %%a in ( !%self%.__elements__! ) do (
+		for %%a in ( !%self%.elements! ) do (
 			if !counter! NEQ %~3 (
 				set elements=!elements!%%a!%self%.__delim__!
 			)
 			set /a counter=!counter! + 1
 		)
-	endlocal & set %self%.__elements__=%elements%
+	endlocal & set %self%.elements=%elements%
+exit /b
+
+:print --> 1:objectname
+	setlocal enabledelayedexpansion
+	endlocal & echo !%self%.elements!
 exit /b

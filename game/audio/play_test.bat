@@ -1,5 +1,5 @@
 @echo off
-start /min "Sound" play 341229__sharesynth__coin02.wav loop
+start /min "Sound" play kick.wav
 
 timeout /t 5
 

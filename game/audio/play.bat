@@ -1,6 +1,10 @@
 ::Source: https://stackoverflow.com/questions/23313709/play-invisible-music-with-batch-file (Author: SachaDee)
 
 @echo off
+
+echo false>__sound_terminated__
+title BatAudio
+
 set "sound_file=%~1"
 ( echo Set Sound = CreateObject("WMPlayer.OCX.7"^)
   echo Sound.URL = "%sound_file%"
@@ -9,6 +13,10 @@ set "sound_file=%~1"
   echo wscript.sleep 100
   echo loop
   echo wscript.sleep (int(Sound.currentmedia.duration^)+1^)*1000) >sound.vbs
+  echo Set objFSO=CreateObject("Scripting.FileSystemObject") >>sound.vbs
+  echo Set objFile = objFSO.CreateTextFile("__sound_terminated__",True) >>sound.vbs
+  echo objFile.Write "true" >>sound.vbs
+  echo objFile.Close >>sound.vbs
 
 if "%~2" EQU "loop" ( set looping=true)else ( set looping=false)
 

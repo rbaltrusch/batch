@@ -1,23 +1,37 @@
 @echo off
 setlocal enabledelayedexpansion
+
+::imports
+call consts import: left right forward backward
+
 goto :main
 
 :init
-	set background_entity=.
+	set "background_entity=."
 	set entity.x=1
 	set entity.y=1
 	set entity.image=o
-	set ctr=0
-goto :eof
+
+	echo. > __sound_terminated__
+	echo. > __sound_stopped__
+exit /b
+
+:get_input
+	set input=
+	call input/listen
+	cls
+	set /p input= < input.txt
+	del input.txt
+exit /b
 
 :draw
 	setlocal
 		
-		for /l %%y in (1 1 1) do (
+		for /l %%y in (1 1 10) do (
 			
 			set screen=
 			
-			for /l %%x in (1 1 80) do (
+			for /l %%x in (1 1 10) do (
 				if %%x == !entity.x! (
 					if %%y == !entity.y! (
 						set blit_entity=!entity.image!
@@ -34,31 +48,31 @@ goto :eof
 		)
 		
 	endlocal
-goto :eof
+exit /b
 
 :mainloop
 	call :draw
-	if !direction! == pos (
-		if !entity.x! GEQ 80 (
-			set direction=neg
-		)
-	)else (
-		if !entity.x! LEQ 1 (
-			set direction=pos
-		)
+	call :get_input
+
+	if "!input!" EQU "!left!" ( set /a entity.x= !entity.x! - 1)
+	if "!input!" EQU "!right!" ( set /a entity.x= !entity.x! + 1)
+	if "!input!" EQU "!forward!" ( set /a entity.y= !entity.y! - 1)
+	if "!input!" EQU "!backward!" ( set /a entity.y= !entity.y! + 1)
+
+	set /p sound_terminated= <__sound_terminated__
+
+	if "%sound_terminated%" EQU "true" (
+		call audio/stop_audio >__garbage__
 	)
-	
-	if !direction! == pos (
-		set /a entity.x= !entity.x! + 1
-	)else (
-		set /a entity.x= !entity.x! - 1
+
+	if not "%sound_terminated%" EQU "false" (
+		start /min "Sound" call audio/play audio/kick.wav
 	)
-	
-	set /a ctr= !ctr! + 1
+
 	goto :mainloop
-goto :eof
+exit /b
 
 :main
 	call :init
 	call :mainloop
-goto :eof
+exit /b

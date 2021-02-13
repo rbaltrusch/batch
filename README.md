@@ -1,4 +1,4 @@
-# MS-DOS batch files
+# Windows Batchfiles
 
 This repository is a collection of Windows batchfiles, primarily to practice batchfile syntax and test the various batch functionality available.
 

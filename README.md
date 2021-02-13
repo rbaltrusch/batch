@@ -33,9 +33,9 @@ This repository contains files that test out:
 	- Showcases a function with local scope and a return value passed back to global scope, using the syntax:
 
 ```batch
-										setlocal
-										set /a var_from_local_scope=1
-										endlocal & set var=%var_from_local_scope%
+	setlocal
+	set /a var_from_local_scope=1
+	endlocal & set var=%var_from_local_scope%
 ```
         
 #### Loops
@@ -69,7 +69,7 @@ To get a copy of this repository, simply open up git bash in an empty folder and
 
 ## Contributions
 
-Any contributions, such as additional features, bugfixes, or documentation are helpful and very much appreciated. Just send out a pull request, which will be merged in to master after a review.
+Any contributions, such as additional features, bugfixes, or documentation are much appreciated. Just send out a pull request, which will be merged in to master after a review.
 
 ## License
 

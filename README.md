@@ -77,4 +77,4 @@ This repository is open-source software available under the MIT license (see LIC
 
 ## Contact
 
-Raise an issue for code changes. To reach out, please send an email to richard@baltrusch.net.
+Please raise an issue for code changes. To reach out, please send an email to richard@baltrusch.net.

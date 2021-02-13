@@ -2,6 +2,9 @@
 ::It is case-insensitive.
 ::In Windows, folders are delimited by forward or backward slashes.
 
+::to avoid any harm from accidentally running this file, exit immediately
+exit /b 0
+
 ::@ prefix disables command-line output for one line
 @dir
 

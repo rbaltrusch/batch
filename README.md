@@ -2,7 +2,7 @@
 
 This repository is a collection of Windows batchfiles, primarily to practice batchfile syntax and test the various batch functionality available.
 
-The targeted audience of this repository primarily is developers just getting started writing batchfiles.
+The targeted audience of this repository primarily is developers just getting started writing batchfiles. For developers only needing to accomplish simple tasks in the command line window, the [common workflow wiki page](https://github.com/rbaltrusch/batch/wiki/Common-workflow) should be enough to get started.
 
 ## Contents
 

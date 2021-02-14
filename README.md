@@ -19,6 +19,8 @@ This repository contains files that test out:
 	- string manipulation
 	- redirection (piping)
 
+A more detailed description of most concepts touched on here can be found in the [wiki](https://github.com/rbaltrusch/batch/wiki).
+
 #### In-built Commands
 
 1) batch_training.bat

@@ -9,15 +9,17 @@ The targeted audience of this repository primarily is developers just getting st
 This repository contains files that test out:
 
 - most in-built batchfile commands
-- function definitions
+- [variables](https://github.com/rbaltrusch/batch/wiki/Variables)
+- [function definitions](https://github.com/rbaltrusch/batch/wiki/Functions)
 	- with local and global scopes
 - loops
-	- for loops
+	- [for loops](https://github.com/rbaltrusch/batch/wiki/For-loop)
 	- while loops
+- [conditional logic](https://github.com/rbaltrusch/batch/wiki/Conditionals)
 - various other functionality, e.g.
 	- user input
 	- string manipulation
-	- redirection (piping)
+	- [redirection (piping)](https://github.com/rbaltrusch/batch/wiki/Redirection)
 
 A more detailed description of most concepts touched on here can be found in the [wiki](https://github.com/rbaltrusch/batch/wiki).
 
@@ -71,11 +73,11 @@ To get a copy of this repository, simply open up git bash in an empty folder and
 
 ## Contributions
 
-Any contributions, such as additional features, bugfixes, or documentation are much appreciated. Just send out a pull request, which will be merged in to master after a review.
+Any contributions, such as additional features, bugfixes, or documentation are much appreciated. Contribution guidelines are specified [here](https://github.com/rbaltrusch/batch/blob/master/CONTRIBUTING.md)
 
 ## License
 
-This repository is open-source software available under the MIT license (see LICENSE)
+This repository is open-source software available under the [MIT license](https://github.com/rbaltrusch/batch/blob/master/LICENSE)
 
 ## Contact
 

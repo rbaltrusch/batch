@@ -73,7 +73,7 @@ To get a copy of this repository, simply open up git bash in an empty folder and
 
 ## Contributions
 
-Any contributions, such as additional features, bugfixes, or documentation are much appreciated. Contribution guidelines are specified [here](https://github.com/rbaltrusch/batch/blob/master/CONTRIBUTING.md)
+Any contributions, such as additional features, bugfixes, or documentation are much appreciated. Contribution guidelines are specified in [CONTRIBUTING.md](https://github.com/rbaltrusch/batch/blob/master/CONTRIBUTING.md).
 
 ## License
 
